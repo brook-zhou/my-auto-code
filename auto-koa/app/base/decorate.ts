@@ -2,6 +2,7 @@ type Route = {
     path:string
     method:string
     fn:void
+    ctx:any
 }
 
 
@@ -15,11 +16,11 @@ const controller = (_name?:string):ClassDecorator=>{
 const get = (_value:any):MethodDecorator=>{
     return (target:any,key:string|symbol,desctiptor:any)=>{
         const route:Route = {
-            path: `/${_value}`||<string>key,
+            path: `/${_value||<string>key}`,
             method:'get',
-            fn: desctiptor.value
+            fn: desctiptor.value,
+            ctx:{}
         }
-
         !target.moduleRoutes && (target.moduleRoutes = [])
         target.moduleRoutes.push(route)
        
@@ -29,15 +30,17 @@ const get = (_value:any):MethodDecorator=>{
 const post = (_value:any):MethodDecorator=>{
     return (target:any,key:string|symbol,desctiptor:any)=>{
         const route:Route = {
-            path:`/${_value}`,
+            path:`/${_value||<string>key}`,
             method:'post',
-            fn: desctiptor.value
+            fn: desctiptor.value,
+            ctx:{}
         }
 
         !target.moduleRoutes && (target.moduleRoutes = [])
         target.moduleRoutes.push(route)
     }
 }
+
 
 
 module.exports = {
