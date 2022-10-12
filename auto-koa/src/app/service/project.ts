@@ -1,4 +1,4 @@
-import SqlModel from "../framework/mysql"
+import SqlModel from "@/framework/mysql"
 const path = require("path")
 
 export default class Project extends SqlModel {

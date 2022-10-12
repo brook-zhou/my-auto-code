@@ -1,5 +1,5 @@
 import { Context } from "koa"
-import controllers from "../config/router.config"
+import controllers from "@/config/router.config"
 import jwt from "jsonwebtoken"
 
 const Router = require("koa-router")()

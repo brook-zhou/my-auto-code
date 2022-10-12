@@ -1,7 +1,9 @@
 
-import Router from './framework/router'
-import {createServer} from './framework/core'
-import createConstant from './framework/constant'
+require('module-alias/register')
+import Router from '@/framework/router'
+import {createServer} from '@/framework/core'
+import createConstant from '@/framework/constant'
+
 
 createConstant()
 

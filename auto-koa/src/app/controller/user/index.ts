@@ -1,6 +1,6 @@
-import {Controller,Module, Post, Get, UnAuth } from "../../framework/controller"
+import {Controller,Module, Post, Get, UnAuth } from "@/framework/controller"
 import jwt from 'jsonwebtoken'
-import Project from "../../service/project"
+import Project from "@/app/service/project"
 
 @UnAuth()
 export default class User  extends Controller{
