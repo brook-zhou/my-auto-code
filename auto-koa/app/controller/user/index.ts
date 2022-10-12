@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import Project from "../../service/project"
 
 @UnAuth()
-class User  extends Controller{
+export default class User  extends Controller{
  
   constructor(){
     super()
@@ -28,4 +28,4 @@ class User  extends Controller{
   }
 
 }
-export default User
+
