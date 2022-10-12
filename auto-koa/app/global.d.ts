@@ -5,14 +5,14 @@ declare type Accessheader = {
 };
 
 
-declare type Ctx = {
-    app:any
-    body:any
-    response:any
-    request:{
-        query:any
-        body:any
-    },
-    originalUrl:string
-    [propName:string]:any
+declare type ReturnData = {
+    code:number
+    msg:string
+    data:any
 }
+
+var jwtSecret:string
+
+var send:(data?:any,code?:number, msg?:string)=>ReturnData
+var sqlConn:any
+

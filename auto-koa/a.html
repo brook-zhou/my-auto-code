@@ -13,7 +13,9 @@
     <script>
         
         async function test(){
-          let a = await  fetch("http://127.0.0.1:8000/user/info",{method:'post',body:JSON.stringify({a:343})}).then(res=>res.json())
+          let a = await  fetch("http://127.0.0.1:8000/user/info",{method:'post',body:JSON.stringify({a:343}),headers:{
+            authorization:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibW95dWZlZCIsImlhdCI6MTY2NTU0MjczMSwiZXhwIjoxNjY1NTUzNTMxfQ.rN_efUu12Pi2DqUOOGYzStChmjPr2H1ZkJHH4WC9YdM'
+          }}).then(res=>res.json())
           console.log(a)
 
             // axios.post("http://127.0.0.1:8000/a",{

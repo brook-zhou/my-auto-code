@@ -1,36 +1,31 @@
-import { Controller, Post, Get } from "../../framework/decorate"
-import {sign} from 'jsonwebtoken'
-const secret = "testjwt"
+import {Controller,Module, Post, Get, UnAuth } from "../../framework/controller"
+import jwt from 'jsonwebtoken'
+import Project from "../../service/project"
 
-@Controller()
-class User {
-  ctx: Ctx | any
+@UnAuth()
+class User  extends Controller{
+ 
+  constructor(){
+    super()
+  }
 
-  @Get({_auth:false})
+  @Get()
   async index() {
-    const token = sign({ name: 'moyufed' }, secret, { expiresIn: '3h' }) // token 有效期为3小时
-    this.ctx.cookies.set(
-        'token',
-        token,
-        {
-            domain: 'localhost', // 设置 cookie 的域
-            path: '/', // 设置 cookie 的路径
-            maxAge: 3 * 60 * 60 * 1000, // cookie 的有效时间 ms
-            httpOnly: true, // 是否要设置 httpOnly
-            overwrite: true // 是否要覆盖已有的 cookie 设置
-        }
-    )
+    const token = jwt.sign({ id:14,name: 'moyufed' }, globalThis.jwtSecret, { expiresIn: '3h' })
+
     this.ctx.body = token
+  }
+
+  @Get()
+  async sql(){
+    const d = new Project()
+    this.ctx.body = send(await d.select())
   }
 
   @Post()
   async info() {
-    this.do()
     this.ctx.body = this.ctx.request.body
   }
 
-  do() {
-    console.log(111111)
-  }
 }
 export default User

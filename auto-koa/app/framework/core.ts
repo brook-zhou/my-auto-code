@@ -13,9 +13,7 @@ export function createServer(port: number, route: any, opt: { cors?: Accessheade
       ctx.method === "OPTIONS" ? (ctx.body = 200) : await next()
     })
     .use(koaBody())
-
     .use(route.routes())
-
     .use(route.allowedMethods())
     .listen(port)
 }
